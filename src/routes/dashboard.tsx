@@ -1,6 +1,7 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
+import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { AppShell } from "@/components/AppShell";
 import { getProfile } from "@/lib/data.functions";
@@ -22,12 +23,20 @@ const TOOLS = [
   { to: "/finance", title: "Finance", emoji: "💷", desc: "Savings & debt plan" },
   { to: "/education", title: "Education", emoji: "🎓", desc: "Colleges & universities" },
   { to: "/tutoring", title: "Tutoring", emoji: "🤝", desc: "Peer help board" },
-];
+] as const;
 
 function DashboardPage() {
   const fetchProfile = useServerFn(getProfile);
+  const navigate = useNavigate();
   const { data: profileData } = useQuery({ queryKey: ["profile"], queryFn: () => fetchProfile({}) });
   const profile = profileData?.profile;
+
+  useEffect(() => {
+    if (profileData && !profile?.onboarded) {
+      navigate({ to: "/onboarding" });
+    }
+  }, [profileData, profile, navigate]);
+
 
   return (
     <AppShell>
