@@ -33,14 +33,15 @@ function Landing() {
           <span className="font-display text-xl font-semibold tracking-tight">PathForge</span>
         </div>
         <nav className="flex items-center gap-3">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">
-            Home
+          <Link to="/auth" className="text-sm text-muted-foreground hover:text-foreground">
+            Sign in
           </Link>
           <Button asChild variant="hero" size="sm">
-            <a href="#early">Get early access</a>
+            <Link to="/auth">Get started</Link>
           </Button>
         </nav>
       </header>
+
 
       <main className="mx-auto max-w-6xl px-6">
         <section className="grid items-center gap-10 py-10 md:grid-cols-2 md:py-20">
@@ -60,12 +61,13 @@ function Landing() {
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button variant="hero" size="xl" asChild>
-                <a href="#early">Start building your plan</a>
+                <Link to="/auth">Start building your plan</Link>
               </Button>
               <span className="text-sm text-muted-foreground">
                 Free during early access · £ figures · UK education
               </span>
             </div>
+
           </div>
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-brand opacity-20 blur-2xl" />
@@ -96,19 +98,18 @@ function Landing() {
           className="my-16 rounded-3xl bg-gradient-brand p-10 text-center text-primary-foreground shadow-xl"
         >
           <h2 className="font-display text-3xl font-semibold md:text-4xl">
-            Your plan is being forged
+            Ready to forge your path?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base opacity-90">
-            PathForge is being built live. The backend, design system, AI gateway and database
-            (profiles, GCSEs, career, house, CV, AI plans, chat threads, tutoring, finance) are
-            wired up. The sign-up flow, onboarding wizard, dashboard, AI plan, CV+PDF export,
-            house designer, finance adviser, tutoring board and college/uni finder pages are
-            being built in the next iteration.
+            Create your free account and build a plan tailored to your GCSEs, dream job and dream home.
           </p>
-          <p className="mt-4 text-sm opacity-80">
-            Reply in chat with “continue” and I'll keep going.
-          </p>
+          <div className="mt-6">
+            <Button asChild size="xl" variant="secondary">
+              <Link to="/auth">Create your account</Link>
+            </Button>
+          </div>
         </section>
+
 
         <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
           © {new Date().getFullYear()} PathForge · Built for UK GCSE leavers
