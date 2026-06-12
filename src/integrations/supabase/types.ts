@@ -14,16 +14,346 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_plans: {
+        Row: {
+          content_md: string
+          data_json: Json | null
+          id: string
+          kind: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content_md: string
+          data_json?: Json | null
+          id?: string
+          kind: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content_md?: string
+          data_json?: Json | null
+          id?: string
+          kind?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      career_goals: {
+        Row: {
+          company: string | null
+          job_description: string | null
+          job_link: string | null
+          job_title: string | null
+          posted_salary: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          company?: string | null
+          job_description?: string | null
+          job_link?: string | null
+          job_title?: string | null
+          posted_salary?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          company?: string | null
+          job_description?: string | null
+          job_link?: string | null
+          job_title?: string | null
+          posted_salary?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      chat_messages: {
+        Row: {
+          created_at: string
+          id: string
+          parts_json: Json
+          role: string
+          thread_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          parts_json: Json
+          role: string
+          thread_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          parts_json?: Json
+          role?: string
+          thread_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "chat_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_threads: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          tool: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          tool: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          tool?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      cvs: {
+        Row: {
+          content_json: Json
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content_json?: Json
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content_json?: Json
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      finance_snapshots: {
+        Row: {
+          breakdown_json: Json | null
+          debt_estimate: number | null
+          monthly_save: number | null
+          target_house_cost: number | null
+          target_year: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          breakdown_json?: Json | null
+          debt_estimate?: number | null
+          monthly_save?: number | null
+          target_house_cost?: number | null
+          target_year?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          breakdown_json?: Json | null
+          debt_estimate?: number | null
+          monthly_save?: number | null
+          target_house_cost?: number | null
+          target_year?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      gcse_subjects: {
+        Row: {
+          created_at: string
+          id: string
+          predicted_grade: string
+          subject: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          predicted_grade: string
+          subject: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          predicted_grade?: string
+          subject?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      house_plans: {
+        Row: {
+          bathrooms: number | null
+          bedrooms: number | null
+          design_json: Json | null
+          est_cost: number | null
+          mode: Database["public"]["Enums"]["house_mode"] | null
+          notes: string | null
+          style: string | null
+          target_year: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bathrooms?: number | null
+          bedrooms?: number | null
+          design_json?: Json | null
+          est_cost?: number | null
+          mode?: Database["public"]["Enums"]["house_mode"] | null
+          notes?: string | null
+          style?: string | null
+          target_year?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bathrooms?: number | null
+          bedrooms?: number | null
+          design_json?: Json | null
+          est_cost?: number | null
+          mode?: Database["public"]["Enums"]["house_mode"] | null
+          notes?: string | null
+          style?: string | null
+          target_year?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          current_location: string | null
+          dream_location: string | null
+          full_name: string | null
+          id: string
+          onboarded: boolean
+          part_time_hours_week: number | null
+          part_time_wage_hourly: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_location?: string | null
+          dream_location?: string | null
+          full_name?: string | null
+          id: string
+          onboarded?: boolean
+          part_time_hours_week?: number | null
+          part_time_wage_hourly?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_location?: string | null
+          dream_location?: string | null
+          full_name?: string | null
+          id?: string
+          onboarded?: boolean
+          part_time_hours_week?: number | null
+          part_time_wage_hourly?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      tutoring_posts: {
+        Row: {
+          author_name: string | null
+          body: string
+          contact: string | null
+          created_at: string
+          id: string
+          level: string | null
+          subject: string
+          type: Database["public"]["Enums"]["tutor_post_type"]
+          user_id: string
+        }
+        Insert: {
+          author_name?: string | null
+          body: string
+          contact?: string | null
+          created_at?: string
+          id?: string
+          level?: string | null
+          subject: string
+          type: Database["public"]["Enums"]["tutor_post_type"]
+          user_id: string
+        }
+        Update: {
+          author_name?: string | null
+          body?: string
+          contact?: string | null
+          created_at?: string
+          id?: string
+          level?: string | null
+          subject?: string
+          type?: Database["public"]["Enums"]["tutor_post_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      house_mode: "renovate" | "redecorate"
+      tutor_post_type: "offer" | "request"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +480,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      house_mode: ["renovate", "redecorate"],
+      tutor_post_type: ["offer", "request"],
+    },
   },
 } as const
