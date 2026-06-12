@@ -9,20 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TutoringRouteImport } from './routes/tutoring'
+import { Route as PlanRouteImport } from './routes/plan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as HouseRouteImport } from './routes/house'
+import { Route as FinanceRouteImport } from './routes/finance'
+import { Route as EducationRouteImport } from './routes/education'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CvRouteImport } from './routes/cv'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
+const TutoringRoute = TutoringRouteImport.update({
+  id: '/tutoring',
+  path: '/tutoring',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanRoute = PlanRouteImport.update({
+  id: '/plan',
+  path: '/plan',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HouseRoute = HouseRouteImport.update({
+  id: '/house',
+  path: '/house',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinanceRoute = FinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationRoute = EducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -44,43 +80,115 @@ const ApiChatRoute = ApiChatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cv': typeof CvRoute
   '/dashboard': typeof DashboardRoute
+  '/education': typeof EducationRoute
+  '/finance': typeof FinanceRoute
+  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
+  '/plan': typeof PlanRoute
+  '/tutoring': typeof TutoringRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cv': typeof CvRoute
   '/dashboard': typeof DashboardRoute
+  '/education': typeof EducationRoute
+  '/finance': typeof FinanceRoute
+  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
+  '/plan': typeof PlanRoute
+  '/tutoring': typeof TutoringRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/cv': typeof CvRoute
   '/dashboard': typeof DashboardRoute
+  '/education': typeof EducationRoute
+  '/finance': typeof FinanceRoute
+  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
+  '/plan': typeof PlanRoute
+  '/tutoring': typeof TutoringRoute
   '/api/chat': typeof ApiChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/dashboard' | '/onboarding' | '/api/chat'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/cv'
+    | '/dashboard'
+    | '/education'
+    | '/finance'
+    | '/house'
+    | '/onboarding'
+    | '/plan'
+    | '/tutoring'
+    | '/api/chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/dashboard' | '/onboarding' | '/api/chat'
-  id: '__root__' | '/' | '/auth' | '/dashboard' | '/onboarding' | '/api/chat'
+  to:
+    | '/'
+    | '/auth'
+    | '/cv'
+    | '/dashboard'
+    | '/education'
+    | '/finance'
+    | '/house'
+    | '/onboarding'
+    | '/plan'
+    | '/tutoring'
+    | '/api/chat'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/cv'
+    | '/dashboard'
+    | '/education'
+    | '/finance'
+    | '/house'
+    | '/onboarding'
+    | '/plan'
+    | '/tutoring'
+    | '/api/chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  CvRoute: typeof CvRoute
   DashboardRoute: typeof DashboardRoute
+  EducationRoute: typeof EducationRoute
+  FinanceRoute: typeof FinanceRoute
+  HouseRoute: typeof HouseRoute
   OnboardingRoute: typeof OnboardingRoute
+  PlanRoute: typeof PlanRoute
+  TutoringRoute: typeof TutoringRoute
   ApiChatRoute: typeof ApiChatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/tutoring': {
+      id: '/tutoring'
+      path: '/tutoring'
+      fullPath: '/tutoring'
+      preLoaderRoute: typeof TutoringRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan': {
+      id: '/plan'
+      path: '/plan'
+      fullPath: '/plan'
+      preLoaderRoute: typeof PlanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
@@ -88,11 +196,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/house': {
+      id: '/house'
+      path: '/house'
+      fullPath: '/house'
+      preLoaderRoute: typeof HouseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/finance': {
+      id: '/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof FinanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education': {
+      id: '/education'
+      path: '/education'
+      fullPath: '/education'
+      preLoaderRoute: typeof EducationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cv': {
+      id: '/cv'
+      path: '/cv'
+      fullPath: '/cv'
+      preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -122,20 +258,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  CvRoute: CvRoute,
   DashboardRoute: DashboardRoute,
+  EducationRoute: EducationRoute,
+  FinanceRoute: FinanceRoute,
+  HouseRoute: HouseRoute,
   OnboardingRoute: OnboardingRoute,
+  PlanRoute: PlanRoute,
+  TutoringRoute: TutoringRoute,
   ApiChatRoute: ApiChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
