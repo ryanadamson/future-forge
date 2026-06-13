@@ -8,6 +8,7 @@ const NAV = [
   { to: "/plan", label: "Career Plan" },
   { to: "/cv", label: "CV" },
   { to: "/finance", label: "Finance" },
+  { to: "/accountant", label: "Accountant" },
   { to: "/education", label: "Education" },
   { to: "/tutoring", label: "Tutoring" },
 ];
