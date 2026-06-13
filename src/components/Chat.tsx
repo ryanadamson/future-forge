@@ -159,7 +159,7 @@ function ChatWindow({
     id: threadId,
     messages: initialMessages,
     transport,
-    onError: (e) => toast.error(e.message || "Chat error"),
+    onError: (e: Error) => toast.error(e.message || "Chat error"),
   });
 
   const [input, setInput] = useState("");
@@ -187,9 +187,9 @@ function ChatWindow({
               description={placeholder ?? "Your context is shared automatically."}
             />
           ) : (
-            messages.map((m) => {
+            messages.map((m: UIMessage) => {
               const text = m.parts
-                .map((p) => (p.type === "text" ? p.text : ""))
+                .map((p) => (p.type === "text" ? (p as { type: "text"; text: string }).text : ""))
                 .join("");
               return (
                 <Message key={m.id} from={m.role}>

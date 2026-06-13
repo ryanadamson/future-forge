@@ -19,7 +19,6 @@ export const Route = createFileRoute("/dashboard")({
 const TOOLS = [
   { to: "/plan", title: "Career Plan", emoji: "🎯", desc: "AI-generated action plan" },
   { to: "/cv", title: "CV Builder", emoji: "📄", desc: "Draft and export your CV" },
-  { to: "/house", title: "Dream House", emoji: "🏠", desc: "Plan your future home" },
   { to: "/finance", title: "Finance", emoji: "💷", desc: "Savings & debt plan" },
   { to: "/education", title: "Education", emoji: "🎓", desc: "Colleges & universities" },
   { to: "/tutoring", title: "Tutoring", emoji: "🤝", desc: "Peer help board" },

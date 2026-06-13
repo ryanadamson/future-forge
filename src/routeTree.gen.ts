@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TutoringRouteImport } from './routes/tutoring'
 import { Route as PlanRouteImport } from './routes/plan'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as HouseRouteImport } from './routes/house'
 import { Route as FinanceRouteImport } from './routes/finance'
 import { Route as EducationRouteImport } from './routes/education'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -34,11 +33,6 @@ const PlanRoute = PlanRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HouseRoute = HouseRouteImport.update({
-  id: '/house',
-  path: '/house',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FinanceRoute = FinanceRouteImport.update({
@@ -84,7 +78,6 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/education': typeof EducationRoute
   '/finance': typeof FinanceRoute
-  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
   '/plan': typeof PlanRoute
   '/tutoring': typeof TutoringRoute
@@ -97,7 +90,6 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/education': typeof EducationRoute
   '/finance': typeof FinanceRoute
-  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
   '/plan': typeof PlanRoute
   '/tutoring': typeof TutoringRoute
@@ -111,7 +103,6 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/education': typeof EducationRoute
   '/finance': typeof FinanceRoute
-  '/house': typeof HouseRoute
   '/onboarding': typeof OnboardingRoute
   '/plan': typeof PlanRoute
   '/tutoring': typeof TutoringRoute
@@ -126,7 +117,6 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/education'
     | '/finance'
-    | '/house'
     | '/onboarding'
     | '/plan'
     | '/tutoring'
@@ -139,7 +129,6 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/education'
     | '/finance'
-    | '/house'
     | '/onboarding'
     | '/plan'
     | '/tutoring'
@@ -152,7 +141,6 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/education'
     | '/finance'
-    | '/house'
     | '/onboarding'
     | '/plan'
     | '/tutoring'
@@ -166,7 +154,6 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   EducationRoute: typeof EducationRoute
   FinanceRoute: typeof FinanceRoute
-  HouseRoute: typeof HouseRoute
   OnboardingRoute: typeof OnboardingRoute
   PlanRoute: typeof PlanRoute
   TutoringRoute: typeof TutoringRoute
@@ -194,13 +181,6 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/house': {
-      id: '/house'
-      path: '/house'
-      fullPath: '/house'
-      preLoaderRoute: typeof HouseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/finance': {
@@ -262,7 +242,6 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   EducationRoute: EducationRoute,
   FinanceRoute: FinanceRoute,
-  HouseRoute: HouseRoute,
   OnboardingRoute: OnboardingRoute,
   PlanRoute: PlanRoute,
   TutoringRoute: TutoringRoute,
@@ -271,3 +250,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
