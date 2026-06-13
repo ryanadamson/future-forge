@@ -6,17 +6,17 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "PathForge — Plan your career, CV and dream home after GCSEs" },
+      { title: "PathForge — Plan your career & next steps in Year 10" },
       {
         name: "description",
         content:
-          "PathForge helps UK students at the end of their GCSEs build a clear plan for their dream job, CV, college or uni route, dream home and finances — with personalised AI chat.",
+          "PathForge helps UK Year 10 students turn their GCSE choices into a clear plan for their dream job, CV, college or uni route and finances — with personalised AI chat for every tool.",
       },
-      { property: "og:title", content: "PathForge — From GCSE to dream job & dream home" },
+      { property: "og:title", content: "PathForge — From Year 10 to your dream career" },
       {
         property: "og:description",
         content:
-          "Personalised AI plans, CV builder with PDF export, college/uni finder, dream-house designer, peer tutoring and a finance adviser — built for UK students.",
+          "Personalised AI plans, CV builder with PDF export, college and uni finder, finance adviser and peer tutoring — built for UK Year 10 students working toward GCSEs.",
       },
       { property: "og:image", content: heroImg },
     ],
@@ -47,17 +47,16 @@ function Landing() {
         <section className="grid items-center gap-10 py-10 md:grid-cols-2 md:py-20">
           <div>
             <span className="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-brand">
-              For UK Year 11 leavers
+              For UK Year 10 students
             </span>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight md:text-6xl">
-              From your <span className="text-gradient-brand">GCSEs</span> to your dream job — and
-              dream home.
+              From Year 10 to your <span className="text-gradient-brand">dream career</span>.
             </h1>
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              PathForge turns your subjects, predicted grades and ambitions into a real plan:
-              a personalised career strategy, a UK-style CV you can export as PDF, a dream-house
-              designer, a finance adviser to keep debt low, a free peer-tutoring board and a
-              college / uni finder. Every tool has its own AI chat.
+              You're nearly through Year 10 — PathForge turns your subjects, predicted grades and
+              ambitions into a real plan: a personalised career strategy, a UK-style CV you can
+              export as PDF, a finance adviser to keep debt low, a free peer-tutoring board and a
+              college / uni finder. Every tool has its own multi-thread AI chat.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <Button variant="hero" size="xl" asChild>
@@ -67,6 +66,7 @@ function Landing() {
                 Free during early access · £ figures · UK education
               </span>
             </div>
+
 
           </div>
           <div className="relative">
@@ -101,7 +101,7 @@ function Landing() {
             Ready to forge your path?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base opacity-90">
-            Create your free account and build a plan tailored to your GCSEs, dream job and dream home.
+            Create your free account and build a plan tailored to your GCSE subjects and dream job.
           </p>
           <div className="mt-6">
             <Button asChild size="xl" variant="secondary">
@@ -112,7 +112,7 @@ function Landing() {
 
 
         <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-          © {new Date().getFullYear()} PathForge · Built for UK GCSE leavers
+          © {new Date().getFullYear()} PathForge · Built for UK Year 10 students
         </footer>
       </main>
     </div>
@@ -123,22 +123,17 @@ const FEATURES = [
   {
     emoji: "🎯",
     title: "Best-applicant plan",
-    body: "AI strategist turns your GCSEs, target job and company into a 12-month action plan.",
+    body: "AI strategist turns your subjects, target job and company into a 12-month action plan.",
   },
   {
     emoji: "📄",
     title: "CV builder + PDF",
-    body: "Draft a UK-style CV with AI, edit it in a dedicated chatbot, export to PDF.",
-  },
-  {
-    emoji: "🏠",
-    title: "Dream house designer",
-    body: "Pick renovate or redecorate, get a costed £ plan for the home you want.",
+    body: "Draft a UK-style CV with AI, refine it in a dedicated chatbot, export to PDF.",
   },
   {
     emoji: "💷",
     title: "Finance adviser",
-    body: "Save toward the deposit, factor in tuition, part-time work and graduate pay.",
+    body: "Plan savings, factor in tuition, part-time work and graduate pay.",
   },
   {
     emoji: "🎓",
@@ -149,5 +144,10 @@ const FEATURES = [
     emoji: "🤝",
     title: "Free peer tutoring",
     body: "Offer or request help to push your grades — and your future job chances — higher.",
+  },
+  {
+    emoji: "💬",
+    title: "Multi-thread AI chat",
+    body: "Each tool has its own chatbot with multiple saved conversations you can revisit.",
   },
 ];

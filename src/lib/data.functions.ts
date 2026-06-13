@@ -164,12 +164,20 @@ export const getThreadMessages = createServerFn({ method: "GET" })
     return { messages: rows ?? [] };
   });
 
-// Tutoring posts
+// Tutoring posts — contact is private; only the post's owner sees their own contact.
 export const getTutoringPosts = createServerFn({ method: "GET" })
-  .handler(async () => {
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { data } = await supabaseAdmin.from("tutoring_posts").select("*").order("created_at", { ascending: false });
-    return { posts: data ?? [] };
+    const { data } = await supabaseAdmin
+      .from("tutoring_posts")
+      .select("*")
+      .order("created_at", { ascending: false });
+    const posts = (data ?? []).map((p) => ({
+      ...p,
+      contact: p.user_id === context.userId ? p.contact : null,
+    }));
+    return { posts };
   });
 
 export const createTutoringPost = createServerFn({ method: "POST" })
