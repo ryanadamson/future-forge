@@ -13,8 +13,11 @@ export const Route = createFileRoute("/auth")({
     meta: [{ title: "Sign in — PathForge" }],
   }),
   beforeLoad: async () => {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) throw redirect({ to: "/dashboard" });
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData.session) {
+      const { data } = await supabase.auth.getUser();
+      if (data.user) throw redirect({ to: "/dashboard" });
+    }
   },
   component: AuthPage,
 });
@@ -24,6 +27,7 @@ function AuthPage() {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const handleEmailAuth = async (e: React.FormEvent) => {
@@ -90,6 +94,15 @@ function AuthPage() {
               minLength={6}
             />
           </div>
+          <label className="flex items-center gap-2 text-sm text-muted-foreground">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="h-4 w-4 rounded border-border bg-background accent-primary"
+            />
+            Keep me signed in on this device
+          </label>
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Please wait…" : mode === "signin" ? "Sign in" : "Sign up"}
           </Button>

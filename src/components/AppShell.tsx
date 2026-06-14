@@ -1,6 +1,7 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 
 const NAV = [
@@ -16,6 +17,8 @@ const NAV = [
 export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       <aside className="hidden w-60 flex-col border-r border-border bg-surface md:flex">
@@ -41,7 +44,12 @@ export function AppShell({ children }: { children: ReactNode }) {
             variant="ghost"
             size="sm"
             className="w-full justify-start text-muted-foreground"
-            onClick={async () => { await supabase.auth.signOut(); }}
+            onClick={async () => {
+              await queryClient.cancelQueries();
+              queryClient.clear();
+              await supabase.auth.signOut();
+              navigate({ to: "/auth", replace: true });
+            }}
           >
             Sign out
           </Button>
@@ -60,7 +68,12 @@ export function AppShell({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <Button variant="ghost" size="sm" className="mt-2 w-full justify-start" onClick={async () => { await supabase.auth.signOut(); }}>
+            <Button variant="ghost" size="sm" className="mt-2 w-full justify-start" onClick={async () => {
+              await queryClient.cancelQueries();
+              queryClient.clear();
+              await supabase.auth.signOut();
+              navigate({ to: "/auth", replace: true });
+            }}>
               Sign out
             </Button>
           </div>
