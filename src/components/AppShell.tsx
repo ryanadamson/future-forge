@@ -44,7 +44,12 @@ export function AppShell({ children }: { children: ReactNode }) {
             variant="ghost"
             size="sm"
             className="w-full justify-start text-muted-foreground"
-            onClick={async () => { await supabase.auth.signOut(); }}
+            onClick={async () => {
+              await queryClient.cancelQueries();
+              queryClient.clear();
+              await supabase.auth.signOut();
+              navigate({ to: "/auth", replace: true });
+            }}
           >
             Sign out
           </Button>
