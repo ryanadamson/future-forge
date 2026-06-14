@@ -118,11 +118,15 @@ function Landing() {
             Ready to forge your path?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-base opacity-90">
-            Create your free account and build a plan tailored to your GCSE subjects and dream job.
+            {session
+              ? "Jump back in and keep building your plan."
+              : "Create your free account and build a plan tailored to your GCSE subjects and dream job."}
           </p>
           <div className="mt-6">
             <Button asChild size="xl" variant="secondary">
-              <Link to="/auth">Create your account</Link>
+              <Link to={session ? "/dashboard" : "/auth"}>
+                {session ? "Go to Dashboard" : "Create your account"}
+              </Link>
             </Button>
           </div>
         </section>
