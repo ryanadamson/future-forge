@@ -13,8 +13,11 @@ export const Route = createFileRoute("/auth")({
     meta: [{ title: "Sign in — PathForge" }],
   }),
   beforeLoad: async () => {
-    const { data } = await supabase.auth.getUser();
-    if (data.user) throw redirect({ to: "/dashboard" });
+    const { data: sessionData } = await supabase.auth.getSession();
+    if (sessionData.session) {
+      const { data } = await supabase.auth.getUser();
+      if (data.user) throw redirect({ to: "/dashboard" });
+    }
   },
   component: AuthPage,
 });
