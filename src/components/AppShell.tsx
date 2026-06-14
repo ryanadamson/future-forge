@@ -17,6 +17,8 @@ const NAV = [
 export function AppShell({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   return (
     <div className="flex min-h-screen bg-background text-foreground">
       <aside className="hidden w-60 flex-col border-r border-border bg-surface md:flex">
