@@ -68,7 +68,12 @@ export function AppShell({ children }: { children: ReactNode }) {
                 {n.label}
               </Link>
             ))}
-            <Button variant="ghost" size="sm" className="mt-2 w-full justify-start" onClick={async () => { await supabase.auth.signOut(); }}>
+            <Button variant="ghost" size="sm" className="mt-2 w-full justify-start" onClick={async () => {
+              await queryClient.cancelQueries();
+              queryClient.clear();
+              await supabase.auth.signOut();
+              navigate({ to: "/auth", replace: true });
+            }}>
               Sign out
             </Button>
           </div>
