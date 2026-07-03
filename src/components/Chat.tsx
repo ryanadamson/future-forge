@@ -221,10 +221,12 @@ function ChatWindow({
               const text = m.parts
                 .map((p) => (p.type === "text" ? (p as { type: "text"; text: string }).text : ""))
                 .join("");
-              const fileParts = m.parts.filter(
-                (p): p is { type: "file"; mediaType?: string; filename?: string; url: string } =>
-                  p.type === "file",
-              );
+              const fileParts = m.parts.filter((p) => p.type === "file") as Array<{
+                type: "file";
+                mediaType: string;
+                filename?: string;
+                url: string;
+              }>;
               return (
                 <Message key={m.id} from={m.role}>
                   <MessageContent>
